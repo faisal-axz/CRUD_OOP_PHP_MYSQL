@@ -27,6 +27,7 @@ echo "</div>";
         $product->price = $_POST['price'];
         $product->description = $_POST['description'];
         $product->category_id = $_POST['category_id'];
+        $product->Brand = $_POST['Brand'];
     
         // create the product
         if($product->create()){
@@ -57,6 +58,11 @@ echo "</div>";
         <tr>
             <td>Description</td>
             <td><textarea name='description' class='form-control'></textarea></td>
+        </tr>
+
+        <tr>
+            <td>Brand</td>
+            <td><input type='text' name='Brand' class='form-control' /></td>
         </tr>
  
         <tr>

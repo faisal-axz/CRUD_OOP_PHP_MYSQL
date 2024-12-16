@@ -10,6 +10,7 @@ class Product{
     public $name;
     public $price;
     public $description;
+    public $Brand;
     public $category_id;
     public $timestamp;
  
@@ -24,12 +25,13 @@ class Product{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
+                    name=:name, price=:price, description=:description, category_id=:category_id, created=:created, Brand=:Brand";
  
         $stmt = $this->conn->prepare($query);
  
         // posted values
         $this->name=htmlspecialchars(strip_tags($this->name));
+        $this->name=htmlspecialchars(strip_tags($this->Brand));
         $this->price=htmlspecialchars(strip_tags($this->price));
         $this->description=htmlspecialchars(strip_tags($this->description));
         $this->category_id=htmlspecialchars(strip_tags($this->category_id));
@@ -43,6 +45,7 @@ class Product{
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":category_id", $this->category_id);
         $stmt->bindParam(":created", $this->timestamp);
+        $stmt->bindParam(":Brand", $this->Brand);
  
         if($stmt->execute()){
             return true;
@@ -54,7 +57,7 @@ class Product{
     function readAll($from_record_num, $records_per_page){
  
         $query = "SELECT
-                    id, name, description, price, category_id
+                    id, name, description, price, category_id, Brand
                 FROM
                     " . $this->table_name . "
                 ORDER BY
@@ -82,7 +85,7 @@ class Product{
     function readOne(){
  
         $query = "SELECT
-                    name, price, description, category_id
+                    name, price, description, category_id, Brand
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -98,6 +101,7 @@ class Product{
      
         $this->name = $row['name'];
         $this->price = $row['price'];
+        $this->Brand = $row['Brand'];
         $this->description = $row['description'];
         $this->category_id = $row['category_id'];
     }
@@ -109,6 +113,7 @@ class Product{
                 SET
                     name = :name,
                     price = :price,
+                    Brand = :Brand,
                     description = :description,
                     category_id  = :category_id
                 WHERE
@@ -118,6 +123,7 @@ class Product{
      
         // posted values
         $this->name=htmlspecialchars(strip_tags($this->name));
+        $this->Brand=htmlspecialchars(strip_tags($this->Brand));
         $this->price=htmlspecialchars(strip_tags($this->price));
         $this->description=htmlspecialchars(strip_tags($this->description));
         $this->category_id=htmlspecialchars(strip_tags($this->category_id));
@@ -126,6 +132,7 @@ class Product{
         // bind parameters
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':price', $this->price);
+        $stmt->bindParam(':Brand', $this->Brand);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':category_id', $this->category_id);
         $stmt->bindParam(':id', $this->id);

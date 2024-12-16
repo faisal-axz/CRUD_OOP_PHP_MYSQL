@@ -42,6 +42,7 @@ if($num>0){
             echo "<th>Price</th>";
             echo "<th>Description</th>";
             echo "<th>Category</th>";
+            echo "<th>Brand</th>";
             echo "<th>Actions</th>";
         echo "</tr>";
  
@@ -58,6 +59,7 @@ if($num>0){
                     $category->readName();
                     echo $category->name;
                 echo "</td>";
+                echo "<td>{$Brand}</td>";
  
                 echo "<td>";
                     // read product button
